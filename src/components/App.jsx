@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { v4 as uuid } from 'uuid' // GROSS
+import { v4 as uuid } from 'uuid'
 import Friend from './Friend'
 import FriendForm from './FriendForm'
 
@@ -47,7 +47,7 @@ export default function App() {
     const name = evt.target.name // either 'username' or 'email'
     // b) pull the value of the input from the event object
     const value = evt.target.value // who knows, the current value
-    // c) set a new state for the whole form // ARGH
+    // c) set a new state for the whole form
 
     setFormValues({
       // copy over all the properties from formValues
