@@ -4,6 +4,7 @@ function Friend({ details }) {
   if (!details) {
     return <h3>Working fetching your friend&apos;s details...</h3>
   }
+
   return (
     <div className='friend container'>
       <h2>{details.username}</h2>
@@ -15,9 +16,7 @@ function Friend({ details }) {
         <div>
           Hobbies:
           <ul>
-            {
-              details.hobbies.map((like, idx) => <li key={idx}>{like}</li>)
-            }
+            {details.hobbies.map((like, idx) => <li key={idx}>{like}</li>)}
           </ul>
         </div>
       }
