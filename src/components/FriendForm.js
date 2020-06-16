@@ -24,7 +24,7 @@ export default function FriendForm(props) {
         {/* ////////// TEXT INPUTS ////////// */}
         {/* ////////// TEXT INPUTS ////////// */}
         <label>Username:&nbsp;
-          {/* 🔥 STEP 5 - Make an input of type `text` for username.
+          {/* 🔥 STEP 5 - Make an input of type `text` for username and give it a name.
               Controlled inputs also need `value` and `onChange` props.
               Inputs render what they're told - their current value comes from app state.
               At each keystroke, a change handler should fire to change app state. */}
