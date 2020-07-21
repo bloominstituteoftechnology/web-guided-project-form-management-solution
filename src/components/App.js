@@ -61,9 +61,9 @@ export default function App() {
       .then(res => {
         const friendFromBackend = res.data // includes a unique 'id'
         setFriends([friendFromBackend, ...friends])
+        // d) also on success clear the form
+        setFormValues(initialFormValues)
       })
-    // d) clear the form
-    setFormValues(initialFormValues)
   }
 
   useEffect(() => {
