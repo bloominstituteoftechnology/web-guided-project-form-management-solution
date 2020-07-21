@@ -6,7 +6,7 @@ import FriendForm from './FriendForm'
 // 👉 the shape of the list of friends from API
 const initialFriendsList = [
   {
-    id: uuid(),
+    id: uuid(), // uuid is a lib to generate random, unique ids
     username: 'Michael',
     email: 'michael@michael.com',
     role: 'Student',
@@ -22,23 +22,23 @@ const initialFormValues = {
   role: '',
 }
 
-// 👉 something to simulate async data fetching
-const fakeAxios = () => {
-  return Promise.resolve({ status: 200, success: true, data: initialFriendsList})
+// 👉 helpers to simulate async data [GET] and [POST]
+const fakeAxiosGet = () => {
+  return Promise.resolve({ status: 200, success: true, data: initialFriendsList })
+}
+const fakeAxiosPost = (url, { username, email, role }) => {
+  const newFriend = { id: uuid(), username, email, role }
+  return Promise.resolve({ status: 200, success: true, data: newFriend })
 }
 
 export default function App() {
-  const [friends, setFriends] = useState([])
+  const [friends, setFriends] = useState([]) // careful what you initialize your state to
 
   // 🔥 STEP 1 - WE NEED STATE TO HOLD ALL VALUES OF THE FORM!
   const [formValues, setFormValues] = useState(initialFormValues) // fix this using the state hook
 
-  useEffect(() => {
-    fakeAxios().then(res => setFriends(res.data))
-  }, [])
-
   const updateForm = (inputName, inputValue) => {
-    // 🔥 STEP 8 - IMPLEMENT A "FORM STATE CHANGER" which will be used inside inputs' `onChange`
+    // 🔥 STEP 2 - IMPLEMENT a "form state updater" which will be used inside the inputs' `onChange` handler
     // It takes in the name of an input and its value, and updates `formValues`
     setFormValues({
       ...formValues,
@@ -47,28 +47,35 @@ export default function App() {
   }
 
   const submitForm = () => {
-    // 🔥 STEP 9 - IMPLEMENT A SUBMIT HANDLER which will be used inside the form's `onSubmit`
-    //    - make a new friend object
-    //    - set up the new friend with the correct attributes
-    //    using the information inside the state of the form
+    // 🔥 STEP 3 - IMPLEMENT a submit function which will be used inside the form's own `onSubmit`
+    // a) make a new friend object, trimming whitespace from username and email
     const newFriend = {
-      id: uuid(),
-      username: formValues.username,
-      email: formValues.email,
+      username: formValues.username.trim(),
+      email: formValues.email.trim(),
       role: formValues.role,
     }
-    // d) update the list of friends in state with the new friend
-    setFriends([ newFriend, ...friends])
-    // e) clear the form
+    // b) prevent further action if either username or email or role is empty string after trimming
+    if (!newFriend.username || !newFriend.email || !newFriend.role) return
+    // c) POST new friend to backend, and on success update the list of friends in state with the new friend from API
+    fakeAxiosPost('fakeapi.com', newFriend)
+      .then(res => {
+        const friendFromBackend = res.data // includes a unique 'id'
+        setFriends([friendFromBackend, ...friends])
+      })
+    // d) clear the form
     setFormValues(initialFormValues)
   }
+
+  useEffect(() => {
+    fakeAxiosGet('fakeapi.com').then(res => setFriends(res.data))
+  }, [])
 
   return (
     <div className='container'>
       <header><h1>Friends App</h1></header>
 
       <FriendForm
-        // 🔥 STEP 2 - The form component needs its props.
+        // 🔥 STEP 4 - The form component needs its props.
         //    Check implementation of FriendForm
         //    to see what props it expects.
         update={updateForm}
