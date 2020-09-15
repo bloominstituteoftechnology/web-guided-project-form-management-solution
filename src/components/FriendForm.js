@@ -28,18 +28,11 @@ export default function FriendForm(props) {
 
   return (
     <form className='form container' onSubmit={onSubmit}>
-      <div className='form-group submit'>
-        <h2>Add a Friend</h2>
-        <button disabled={!values.username || !values.email || !values.role}>submit</button>
-      </div>
-
       <div className='form-group inputs'>
-        <h4>General information</h4>
-
         {/* ////////// TEXT INPUTS ////////// */}
         {/* ////////// TEXT INPUTS ////////// */}
         {/* ////////// TEXT INPUTS ////////// */}
-        <label>Username:&nbsp;
+        <label>Username
           {/* 🔥 STEP 7 - Make an input of type `text` for username.
               Controlled inputs need `value` and `onChange` props.
               Inputs render what they're told - their current value comes from app state.
@@ -47,19 +40,19 @@ export default function FriendForm(props) {
           <input
             name='username'
             type='text'
-            placeholder='Enter a username...'
+            placeholder='type a username...'
             maxLength='30'
             value={values.username}
             onChange={onChange}
           />
         </label>
 
-        <label>Email:&nbsp;
+        <label>Email
           {/* 🔥 STEP 8 - Make an input of type `email` or `text` for email. */}
           <input
             name='email'
             type='email'
-            placeholder='Enter an email...'
+            placeholder='type an email...'
             maxLength='30'
             value={values.email}
             onChange={onChange}
@@ -69,7 +62,7 @@ export default function FriendForm(props) {
         {/* ////////// DROPDOWN ////////// */}
         {/* ////////// DROPDOWN ////////// */}
         {/* ////////// DROPDOWN ////////// */}
-        <label>Role:&nbsp;
+        <label>Role
           {/* 🔥 STEP 9 - Make dropdown for role. */}
           <select value={values.role} name='role' onChange={onChange}>
             <option value=''>-- Select a Role --</option>
@@ -79,6 +72,10 @@ export default function FriendForm(props) {
             <option value='Alumni'>Alumni</option>
           </select>
         </label>
+
+        <div className='submit'>
+          <button disabled={!values.username || !values.email || !values.role}>submit</button>
+        </div>
       </div>
     </form>
   )

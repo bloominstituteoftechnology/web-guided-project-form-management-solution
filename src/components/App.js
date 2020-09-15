@@ -72,7 +72,7 @@ export default function App() {
 
   return (
     <div className='container'>
-      <header><h1>Friends App</h1></header>
+      <h1>Form App</h1>
 
       <FriendForm
         // 🔥 STEP 4 - The form component needs its props.
