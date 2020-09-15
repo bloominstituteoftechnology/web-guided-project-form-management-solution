@@ -1,17 +1,7 @@
 import React, { useState, useEffect } from 'react'
-import { v4 as uuid } from 'uuid'
 import Friend from './Friend'
 import FriendForm from './FriendForm'
-
-// 👉 the shape of the list of friends from API
-const initialFriendsList = [
-  {
-    id: uuid(), // uuid is a lib to generate random, unique ids
-    username: 'Michael',
-    email: 'michael@michael.com',
-    role: 'Student',
-  },
-]
+import axios from '../axios'
 
 // 👉 the shape of the state that drives the form
 const initialFormValues = {
@@ -20,15 +10,6 @@ const initialFormValues = {
   email: '',
   ///// DROPDOWN /////
   role: '',
-}
-
-// 👉 helpers to simulate async data [GET] and [POST]
-const fakeAxiosGet = () => {
-  return Promise.resolve({ status: 200, success: true, data: initialFriendsList })
-}
-const fakeAxiosPost = (url, { username, email, role }) => {
-  const newFriend = { id: uuid(), username, email, role }
-  return Promise.resolve({ status: 200, success: true, data: newFriend })
 }
 
 export default function App() {
@@ -57,7 +38,7 @@ export default function App() {
     // b) prevent further action if either username or email or role is empty string after trimming
     if (!newFriend.username || !newFriend.email || !newFriend.role) return
     // c) POST new friend to backend, and on success update the list of friends in state with the new friend from API
-    fakeAxiosPost('fakeapi.com', newFriend)
+    axios.post('fakeapi.com', newFriend)
       .then(res => {
         const friendFromBackend = res.data // includes a unique 'id'
         setFriends([friendFromBackend, ...friends])
@@ -67,7 +48,7 @@ export default function App() {
   }
 
   useEffect(() => {
-    fakeAxiosGet('fakeapi.com').then(res => setFriends(res.data))
+    axios.get('fakeapi.com').then(res => setFriends(res.data))
   }, [])
 
   return (
