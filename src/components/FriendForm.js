@@ -9,7 +9,7 @@ export default function FriendForm(props) {
   } = props
 
   const onChange = evt => {
-    // 🔥 STEP 5 - IMPLEMENT the change handler for our inputs and dropdown
+    // 🔥 STEP 6 - IMPLEMENT the change handler for our inputs and dropdown
     // a) pull the name of the input from the event object
     const name = evt.target.name // either 'username' or 'email'
     // b) pull the value of the input from the event object
@@ -19,7 +19,7 @@ export default function FriendForm(props) {
   }
 
   const onSubmit = evt => {
-    // 🔥 STEP 6 - IMPLEMENT the submit handler and attach it to the JSX
+    // 🔥 STEP 7 - IMPLEMENT the submit handler and attach it to the JSX
     // a) don't allow the browser to reload!
     evt.preventDefault()
     // c) use the `submit` callback coming in through props
@@ -33,7 +33,7 @@ export default function FriendForm(props) {
         {/* ////////// TEXT INPUTS ////////// */}
         {/* ////////// TEXT INPUTS ////////// */}
         <label>Username
-          {/* 🔥 STEP 7 - Make an input of type `text` for username.
+          {/* 🔥 STEP 3 - Make an input of type `text` for username.
               Controlled inputs need `value` and `onChange` props.
               Inputs render what they're told - their current value comes from app state.
               At each keystroke, a change handler fires to change app state. */}
@@ -48,7 +48,7 @@ export default function FriendForm(props) {
         </label>
 
         <label>Email
-          {/* 🔥 STEP 8 - Make an input of type `email` or `text` for email. */}
+          {/* 🔥 STEP 4 - Make an input of type `email` or `text` for email. */}
           <input
             name='email'
             type='email'
@@ -63,7 +63,7 @@ export default function FriendForm(props) {
         {/* ////////// DROPDOWN ////////// */}
         {/* ////////// DROPDOWN ////////// */}
         <label>Role
-          {/* 🔥 STEP 9 - Make dropdown for role. */}
+          {/* 🔥 STEP 5 - Make dropdown for role. */}
           <select value={values.role} name='role' onChange={onChange}>
             <option value=''>-- Select a Role --</option>
             <option value='Student'>Student</option>
