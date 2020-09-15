@@ -1,11 +1,10 @@
 // 👉 Importing React libs from node_modules folder
 import React, { useState } from 'react'
 import { render } from 'react-dom'
-
-// 👉 Importing the top-level component
+// 👉 App contains a more sophisticated form we'll flesh out later
 import App from './components/App'
 
-// 👉 Let's build a quick form to add more of these:
+// 👉 First let's build a SimpleForm to add more pets:
 const petsList = [
   { petName: 'Fido', petType: 'dog' },
   { petName: 'Tweetie', petType: 'canary' },
