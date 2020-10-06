@@ -14,22 +14,33 @@ const petsList = [
 const initialFormValues = { petName: '', petType: '' }
 
 function SimpleForm() {
+  // THE STATE
   const [pets, setPets] = useState(petsList)
   const [formValues, setFormValues] = useState(initialFormValues)
+  // THE EVENT HANDLERS THAT ALTER STATE
   const change = evt => {
     const { name, value } = evt.target
     setFormValues({ ...formValues, [name]: value })
   }
   const submit = evt => {
+    /*
+    INSTRUCTOR: mention that without `preventDefault` the page would do a reload
+    */
     evt.preventDefault()
     const newPet = { petName: formValues.petName.trim(), petType: formValues.petType.trim() }
     setPets(pets.concat(newPet))
     setFormValues(initialFormValues)
   }
+  // THE JSX
   return (
     <div className='container'>
       <h1>Simple Form App</h1>
       {
+        /*
+        INSTRUCTOR: mention that using an index as key defeats the purpose of the key and leads to bugs.
+        We do it here because it makes the warning in the console go away for this quick demo.
+        Resources from the backend will have unique ids and those should be the keys.
+        */
         pets.map((pet, idx) =>
           <div key={idx}>{pet.petName} is a {pet.petType}</div>)
       }
