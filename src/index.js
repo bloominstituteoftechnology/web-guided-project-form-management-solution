@@ -14,7 +14,7 @@ const petsList = [
 const initialFormValues = { petName: "", petType: "" };
 
 function SimpleForm() {
-  // THE STATE hello
+  // THE STATE
   const [pets, setPets] = useState(petsList);
   const [formValues, setFormValues] = useState(initialFormValues);
   // THE EVENT HANDLERS THAT ALTER STATE
