@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function FriendForm(props) {
   // THESE ARE THE **EXACT PROPS** FriendForm EXPECTS!!!
-  const { values, update, submit } = props
+  const { values, update, submit } = props;
 
   const onChange = evt => {
     // 🔥 STEP 6 - IMPLEMENT the change handler for our inputs and dropdown
@@ -28,10 +28,26 @@ export default function FriendForm(props) {
               Controlled inputs need `value` and `onChange` props.
               Inputs render what they're told - their current value comes from app state.
               At each keystroke, a change handler fires to change app state. */}
+          <input
+            type="text"
+            name="username"
+            value={values.username}
+            placeholder="Type in a username"
+            maxLength="30"
+            onChange={onChange}
+          />
         </label>
 
         <label>Email
           {/* 🔥 STEP 4 - Make an input of type `email` or `text` for email. */}
+          <input
+            type="email"
+            name="email"
+            value={values.email}
+            maxLength="50"
+            placeholder="Type in an email"
+            onChange={onChange}
+          />
         </label>
 
         {/* ////////// DROPDOWN ////////// */}
@@ -39,6 +55,13 @@ export default function FriendForm(props) {
         {/* ////////// DROPDOWN ////////// */}
         <label>Role
           {/* 🔥 STEP 5 - Make dropdown for role. */}
+          <select value={values.role} name="role" onChange={onChange}>
+            <option value=''>-- Select a Role --</option>
+            <option value='Student'>Student</option>
+            <option value='TL'>Team Lead</option>
+            <option value='Instructor'>Instructor</option>
+            <option value='Alumni'>Alumni</option>
+          </select>
         </label>
 
         <div className='submit'>

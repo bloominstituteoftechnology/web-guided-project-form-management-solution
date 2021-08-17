@@ -12,6 +12,7 @@ const petsList = [
 
 function SimpleForm() {
   const [formValues, setFormValues] = useState({petName: "", petType: ""});
+  const [pets, setPets] = useState(petsList);
 
   const change = (event) => {
     const { name, value } = event.target;
@@ -26,12 +27,18 @@ function SimpleForm() {
       petType: formValues.petType
     }
 
-    console.log(newPet);
+    setPets(pets.concat(newPet));
+    setFormValues({petName: "", petType: ""});
   }
 
   return (
     <div className="container">
       <h1>Simple Form App!</h1>
+      {pets.map((pet, idx) => (
+        <div key={idx}>
+          {pet.petName} is a {pet.petType}
+        </div>
+      ))}
       <form onSubmit={submit}>
         <input
           type="text"
@@ -54,7 +61,7 @@ function SimpleForm() {
 render(
   <>
     <SimpleForm />
-    {/* <App /> */}
+    <App />
   </>
   , document.querySelector('#root')
 )
