@@ -18,10 +18,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/LambdaSchool/web-guided-project-form-management-solution.git"
+    "url": "git+https://github.com/BloomInstituteOfTechnology/web-guided-project-form-management-solution.git"
   },
   "bugs": {
-    "url": "https://github.com/LambdaSchool/web-guided-project-form-management-solution/issues"
+    "url": "https://github.com/BloomInstituteOfTechnology/web-guided-project-form-management-solution/issues"
   },
-  "homepage": "https://github.com/LambdaSchool/web-guided-project-form-management-solution#readme"
+  "homepage": "https://github.com/BloomInstituteOfTechnology/web-guided-project-form-management-solution#readme"
 }
